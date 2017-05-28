@@ -1,0 +1,268 @@
+<link rel="stylesheet" href="css/stylePersonalArea.css">
+<% layout('layout/page') -%>
+<% block('title') -%>
+<!-- БЛОК с частями об аккаунте НАЧАЛО-->
+
+    <h2 align="center"><strong>Личный кабинет</strong></h2>
+    <br>
+
+<form class="form-cabinet" name="cabinet_form">
+  <div class="container">
+    <div class="row">
+      <div class="card-row clearfix">
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="description">
+              <h3>    Добро пожаловать, <%=user.get('username')%></h3>
+              <% if (user.username == "admin" || user.username =="admin2") { %>
+                <!--
+                <p><img src="imagesPersonalArea/1_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_1"></p>
+                <p><img src="imagesPersonalArea/2_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_2"></p>
+                <p><img src="imagesPersonalArea/3_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_3"></p>
+              -->
+                <% switch (user.myAvatar) {
+                case "1": %>
+                  <p><img src="imagesPersonalArea/1_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_1"></p>
+                  <p><img src="imagesPersonalArea/2_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_2"></p>
+                  <p><img src="imagesPersonalArea/3_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_3"></p>
+                   <% break; %><%
+                  case "2": %>
+                  <p><img src="imagesPersonalArea/1_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_1"></p>
+                  <p><img src="imagesPersonalArea/2_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_2"></p>
+                  <p><img src="imagesPersonalArea/3_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_3"></p>
+                     <% break; %> <%
+                  case "3": %>
+                  <p><img src="imagesPersonalArea/1_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_1"></p>
+                  <p><img src="imagesPersonalArea/2_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_2"></p>
+                  <p><img src="imagesPersonalArea/3_adminPhotoProfile.png" alt="" class="round" id="avatarAdmin_3"></p>
+                       <% break; %>
+                  <% } %>
+              <% } else if (user.gender == "Мужской") { %>
+              <p><img src="imagesPersonalArea/standartPhotoProfileMan.png" alt="" class="round"></p>
+              <% } else if (user.gender == "Женский") { %>
+              <p><img src="imagesPersonalArea/standartPhotoProfileWomen.png" alt="" class="round"></p>
+              <% } else { %>
+                <p><img src="imagesPersonalArea/standartPhotoProfile.png" alt="" class="round"></p>
+                <!--<p><img src="<%=user.get('myAvatar')%>" alt="" class="round">-->
+               <% } %>
+            </div>
+
+
+            <h5>Установленный аватар: <%=user.get('myAvatar')%>
+            <h5>Готовый аватар:
+
+            <select name="myAvatar" type="text" class="form-control-personalArea target" id="myAvatar">
+            <% switch (user.myAvatar) {
+            case "1": %>
+              <OPTION><%=user.get('myAvatar')%></OPTION>
+              <OPTION>2</OPTION>
+              <OPTION>3</OPTION>
+               <% break; %><%
+              case "2": %>
+                <OPTION><%=user.get('myAvatar')%></OPTION>
+                <OPTION>1</OPTION>
+                <OPTION>3</OPTION>
+                 <% break; %> <%
+              case "3": %>
+                    <OPTION><%=user.get('myAvatar')%></OPTION>
+                    <OPTION>1</OPTION>
+                    <OPTION>2</OPTION>
+                   <% break; %>  <% } %>
+            </select>
+            </h5>
+
+            <button type="button" class="btn btn-primary" id="editAvatar">Загрузить аватар</button>
+
+            <!-- Администраторская панель начало-->
+            <br><br><br>
+              <% if (user.username == "admin" || user.username =="admin2") { %>
+                <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/getAllUsersInJSON\'></form>');$('#submitme').submit();return false;">Список пользователей в JSON-формате</a></li>
+                <br><br><br>
+              <li><a href="/personalArea" onclick="$('body').append('<form id=\'submitme\' method=\'GET\' action=\'/dropDatabase\'></form>');$('#submitme').submit();return false;">ОЧИСТИТЬ БАЗУ ДАННЫХ</a></li>
+              <% }  %>
+            <!-- Администраторская панель конец-->
+
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <h4>Имя пользователя: <div class="inputWindow"><input name="username" value="<%=user.get('username')%>" type="text" class="form-control-personalArea" id="input-username" disabled></div></h4>
+            <h4>Изменить пароль:  <div class="inputWindow"><input name="password" value="" type="text" class="form-control-personalArea" id="input-password" placeholder="Введите новый пароль"></div></h4>
+            <h4>Ваш email: <div class="inputWindow"><input name="email" value="<%=user.get('email')%>" type="text" class="form-control-personalArea" id="input-email"></div></h4>
+            <h4>Ваш пол:
+              <div class="inputWindow"><SELECT name="gender" type="text" class="form-control-personalArea" id="input-gender" >
+                <% switch (user.gender) {
+                case "Мужской": %>
+                  <OPTION ><%=user.get('gender')%></OPTION>
+                  <OPTION>Женский</OPTION>
+                  <OPTION>Не определен</OPTION>
+                   <% break; %><%
+                  case "Женский": %>
+                    <OPTION><%=user.get('gender')%></OPTION>
+                    <OPTION>Мужской</OPTION>
+                    <OPTION>Не определен</OPTION>
+                     <% break; %> <%
+                  case "Не определен": %>
+                        <OPTION><%=user.get('gender')%></OPTION>
+                        <OPTION>Мужской</OPTION>
+                        <OPTION>Женский</OPTION>
+                       <% break; %>  <% } %>
+              </SELECT></div>
+            </h4>
+            <h4>О себе:<div class="inputWindow"><input name="aboutMySelf" value="<%=user.get('aboutMySelf')%>" type="text" class="form-control-personalArea-aboutMe" id="input-aboutMe" placeholder="Расскажите о себе"></div></h4>
+            <button type="submit" class="btn btn-primary" id="updatePesonalData">Обновить информацию</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <h5>Номер счета: <%=user.get('numberInvoice')%></h5>
+            <h5>Ваш баланс: <%=user.get('balanceInvoice')%> VM</h5>
+            <h5><a href="#"><u>ПОПОЛНИТЬ СЧЕТ</u></a></h5>
+            <h5><a href="#"><u>Желаете получать доход от ваших товаров?</u></a></h5>
+            <h5>Дата регистрации: <%=user.get('created')%></h5>
+          <!--  <h5>Как выглядит ваш публичный профиль: <a href="./publicProfile",><%=user.get('username')%></a></h5>-->
+            <h5>Список пользователей:</h5>
+            <% if (user.username == "admin" || user.username =="admin2") { %>
+              <div class="users-bar">
+                <% for(var i=0; i<links.length; i++) { %>
+                  <div class="user-bar"><a href="<%=links[i]%>"><%=usernames[i]%></a></div>
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+  <% if (user.username == "admin" || user.username =="admin2") { %>
+<form class="form-cabinet" name="cabinet_addNewUser">
+  <div class="container">
+    <button type="submit" class="btn btn-primary" id="addNewUser">Добавить нового пользователя</button>
+    <h4>Имя пользователя</h4>
+    <div class="form-group">
+      <input name="usernameNewUser" value="" type="text" class="form-control" id="input-usernameNewUser" placeholder="Имя пользователя">
+    </div>
+    <h4>Email</h4>
+    <div class="form-group">
+        <input name="emailNewUser" value="" type="type" class="form-control" id="input-emailNewUser" placeholder="Email">
+    </div>
+    <h4>Пол</h4>
+    <div class="form-group">
+      <SELECT name="genderNewUser" value="" type="text" class="form-control" id="input-genderNewUser" >
+        <OPTION>Не определен</OPTION>
+        <OPTION>Мужской</OPTION>
+        <OPTION>Женский</OPTION>
+      </SELECT>
+    </div>
+    <h4>Пароль</h4>
+    <div class="form-group">
+        <input name="passwordNewUser" value="" type="password" class="form-control" id="input-passwordNewUser" placeholder="Пароль">
+    </div>
+  </div>
+</form>
+  <% }  %>
+
+  <br><br><br>
+  <h3 align="center"><strong>Ваши покупки</strong></h3>
+
+  <br>
+  <h3 align="center"><strong>Ваши работы</strong></h3>
+</div>
+  <!-- БЛОК с частями об аккаунте КОНЕЦ-->
+
+  <script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_form']).on('submit', function() {
+  var form = $(this);
+  $('.error', form).html('');
+  $(":submit", form).button("loading");
+  // Этот логин, email, пароль отправляются на сервер
+  $.ajax({
+    url: "/updatePersonalData", // роут: require('./registration').post
+    method: "POST",
+    data: form.serialize(),
+    complete: function() {
+      $(":submit", form).button("reset");
+    },
+    statusCode: {
+      // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+      200: function() {
+        form.html("Вы успешно обновились").addClass('alert-success');
+        window.location.href = "/personalArea";
+      },
+      // если 403 - высвечивается ошибка(уже есть такой пользователь)
+      403: function(jqXHR) {
+        var error = JSON.parse(jqXHR.responseText);
+        $('.error', form).html(error.message);
+      }
+    }
+  });
+  return false;
+});
+</script>
+
+
+<script>
+// Клиентский код //
+// Человек вводит логин, email,
+$(document.forms['cabinet_addNewUser']).on('submit', function() {
+var form = $(this);
+$('.error', form).html('');
+$(":submit", form).button("loading");
+// Этот логин, email, пароль отправляются на сервер
+$.ajax({
+  url: "/addNewUser", // роут: require('./registration').post
+  method: "POST",
+  data: form.serialize(),
+  complete: function() {
+    $(":submit", form).button("reset");
+  },
+  statusCode: {
+    // если ответ сервера 200 - перенаправляем человека в личный кабинет(успешно создали нового пользователя)
+    200: function() {
+      form.html("Вы успешно зарегестрировались").addClass('alert-success');
+      window.location.href = "/personalArea";
+    },
+    // если 403 - высвечивается ошибка(уже есть такой пользователь)
+    403: function(jqXHR) {
+      var error = JSON.parse(jqXHR.responseText);
+      $('.error', form).html(error.message);
+    }
+  }
+});
+return false;
+});
+</script>
+
+<script>
+// Имитация клика на элемент
+setTimeout(function(){
+  $('#myAvatar').trigger('click');
+}, 0);
+// Отрисовка аватара, в зависимости от фокуса на выпадающем списке
+$("#myAvatar").click(function(){
+var choiseAvatar = $("#myAvatar").val();
+  switch (choiseAvatar) {
+    case "1":
+      $("#avatarAdmin_1").css("display","block");
+      $("#avatarAdmin_2").css("display","none");
+      $("#avatarAdmin_3").css("display","none");
+      break;
+    case "2":
+    $("#avatarAdmin_1").css("display","none");
+    $("#avatarAdmin_2").css("display","block");
+    $("#avatarAdmin_3").css("display","none");
+      break;
+    case "3":
+    $("#avatarAdmin_1").css("display","none");
+    $("#avatarAdmin_2").css("display","none");
+    $("#avatarAdmin_3").css("display","block");
+      break;
+  }
+});
+</script>

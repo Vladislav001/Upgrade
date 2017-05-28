@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="css/stylePersonalArea.css">
+<% layout('layout/page') -%>
+<% block('title') -%>
+<!-- БЛОК с частями об аккаунте НАЧАЛО-->
+  <form class="form-cabinet" name="cabinet_form">
+    <h2 align="center"><strong>Профиль: <%=user.get('username')%></strong></h2>
+    <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="card-row clearfix">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="description">
+              <% if (user.username == "admin" || user.username =="admin2") { %>
+                <% switch (user.myAvatar) {
+                case "1": %>
+                  <p><img src="../imagesPersonalArea/1_adminPhotoProfile.png" alt="" class="round" ></p>
+                   <% break; %><%
+                  case "2": %>
+                  <p><img src="../imagesPersonalArea/2_adminPhotoProfile.png" alt="" class="round"  ></p>
+                     <% break; %> <%
+                  case "3": %>
+                  <p><img src="../imagesPersonalArea/3_adminPhotoProfile.png" alt="" class="round" ></p>
+                       <% break; %>
+                   <% } %
+              <% } else if (user.gender == "Мужской") { %>
+              <p><img src="../imagesPersonalArea/standartPhotoProfileMan.png" alt="" class="round"></p>
+              <% } else if (user.gender == "Женский") { %>
+              <p><img src="../imagesPersonalArea/standartPhotoProfileWomen.png" alt="" class="round"></p>
+              <% } else { %>
+              <p><img src="../imagesPersonalArea/standartPhotoProfile.png" alt="" class="round"></p>
+               <% } %>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <h5>Email: <%=user.get('email')%></h5>
+            <h5>Пол: <%=user.get('gender')%> </h5>
+            <h5>О себе: <%=user.get('aboutMySelf')%></h5>
+            <h5>Дата регистрации: <%=user.get('created')%></h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+  <br><br><br>
+  <h3 align="center"><strong>Покупки: <%=user.get('username')%></strong></h3>
+
+
+  <br>
+  <h3 align="center"><strong>Работы: <%=user.get('username')%></strong></h3>
+</div>
+  <!-- БЛОК с частями об аккаунте КОНЕЦ-->

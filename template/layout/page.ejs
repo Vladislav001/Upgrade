@@ -1,0 +1,78 @@
+    <link rel="stylesheet" href="/vendor/bower_components/bootstrap/dist/css/bootstrap.css"/><!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title><%=blocks.title%></title>
+  <link rel="stylesheet" href="/vendor/bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/css/app.css"/>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="css/styleHome.css">
+  <link rel="stylesheet" href="css/styleCatalog.css">
+  <link rel="stylesheet" href="/css/stylePersonalArea.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Вроде не надо -->
+  <script src="/vendor/bower_components/jquery/jquery.js"></script>
+  <script src="/vendor/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- Вроде не надо -->
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+<body>
+<header>
+  <%-blocks.header%>
+</header>
+
+
+  <%-partial('../partials/topNavigation')%>
+
+
+<section class="container">
+  <h1><%=blocks.title%></h1>
+
+  </section>
+
+
+  <!-- КАРТИНКА С ЛОГО САЙТА -->
+<div class="imageShapka">
+  <img src="/imagesStandart/wm.png" width=100% alt="">
+</div>
+<!-- КАРТИНКА С ЛОГО САЙТА -->
+
+
+<!-- БЛОК 2-ГО МЕНЮ НАЧАЛО -->
+      <div class="navbar navbar-inverse navbar-static-top">
+        <!-- Содержимое 2-го меню (коллекция навигационных ссылок, формы и др.) -->
+          <div class="collapse navbar-collapse"  id="main-menu" >
+              <!-- Список ссылок, расположенных слева -->
+            <ul class="nav navbar-nav">
+              <a class="navbar-brand" href="#">ИВТ-262</a> <!--БРЕНД САЙТА-->
+              <li><a class="activ-page" href="/">Главная</a></li>
+              <li><a class="activ-page" href="/catalog">Каталог</a></li>
+              <li><a class="activ-page" href="/faq">FAQ</a></li>
+              <li><a class="activ-page" href="/contacts">Контакты</a></li>
+              <li><a class="activ-page" href="/aboutUs">О нас</a></li>
+            </ul>
+          </div>
+      </div>
+<!-- БЛОК 2-ГО МЕНЮ КОНЕЦ-->
+
+  <%-body -%>
+
+<%-partial('../partials/bottomNavigation')%>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='/js/scrollup.js'></script>
+</body>
+</html>
