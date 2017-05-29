@@ -15,4 +15,6 @@ exports.get = function(req, res) {
 		}
 		res.render('personalArea', {links: links, usernames: usernames});
 	});
+
+
 };

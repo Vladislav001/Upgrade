@@ -23,4 +23,8 @@ module.exports = function(app) {
 
   app.get('/getAllUsersInJSON', require('./actions/getAllUsersInJSON').get);
   app.get('/dropDatabase', require('./actions/dropDatabase').get);
+
+  app.get('/sendAnEmail', require('./actions/sendAnEmail').get); // Вроде если добавить типо кнопку, то можно post
+  app.get('/uploadFile', require('./actions/uploadFile').get);
+  app.post('/fileUpload', require('./actions/uploadFile').post);
 };

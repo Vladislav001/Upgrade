@@ -10,6 +10,8 @@ var mongoose_store = new MongoStore({mongooseConnection: mongoose.connection});
 var HttpError = require('./error').HttpError;
 var ObjectId = require('mongodb').ObjectId; // подключаем тип данных ObjectId
 
+var formidable = require('formidable');
+var fs = require('fs');
 // Создать приложение (создает функцию, чтобы обрабатывать запросы)
 var app = express();
 
